@@ -1,0 +1,41 @@
+body {
+    width: 80%;
+    margin: 0 auto;
+    background-color: white;
+}
+
+header {
+    margin-top: 50px;
+    display: flex;
+    margin-bottom: 10px;
+    h2 {
+        font-size: 40px;
+    }
+}
+
+.main {
+    border: 1px solid ;
+    padding: 30px;
+}
+
+.com-box {
+    padding: 5px;
+    border: 1px solid;
+    margin-bottom: 10px;
+    width: 30%;
+}
+
+.com-name {
+    text-decoration: underline;
+    margin-bottom: 8px;
+}
+
+.com-body {
+    letter-spacing: 2px;
+}
+
+.delete-btn {
+    display: inline-block;
+    color: red;
+    margin-top: 10px;
+}

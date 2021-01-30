@@ -1,0 +1,39 @@
+.main {
+  padding-top: 40px;
+}
+
+.list-title {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.list-main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid;
+  width: 70%;
+}
+
+.image {
+  width: 200px;
+  height: 100px;
+}
+
+.no-image {
+  background-color: gray;
+  font-size: 20px;
+  text-align: center;
+  line-height: 100px;
+}
+
+.list-info {
+  width: 50%;
+}
+
+.list-info a, .list-info span {
+  display: block;
+}
+/*# sourceMappingURL=top.css.map */

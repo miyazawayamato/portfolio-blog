@@ -1,0 +1,88 @@
+body {
+  width: 80%;
+  margin: 0 auto;
+  background-color: white;
+}
+
+header {
+  margin-top: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+header h2 {
+  font-size: 40px;
+}
+
+header nav {
+  margin-left: 50px;
+}
+
+.navi {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.navi li {
+  margin-left: 10px;
+}
+
+.main {
+  border: 1px solid;
+}
+
+.message {
+  margin-top: 20px;
+  color: red;
+  font-size: 25px;
+}
+
+.box {
+  background-color: whitesmoke;
+  margin: 15px 0;
+  padding: 5px 0;
+}
+
+.box h3 {
+  font-size: 20px;
+}
+
+.box-menu {
+  margin-top: 10px;
+}
+
+.box-main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 15px 0;
+  height: 110px;
+}
+
+.image {
+  width: 200px;
+  height: 100px;
+  display: block;
+}
+
+.no-image {
+  background-color: #c8c8c8;
+  text-align: center;
+  line-height: 100px;
+}
+
+.text {
+  margin-left: 10px;
+  overflow: hidden;
+  width: 100%;
+  overflow-y: scroll;
+}
+
+.delete-btn {
+  cursor: pointer;
+  color: red;
+}
+/*# sourceMappingURL=admin.css.map */

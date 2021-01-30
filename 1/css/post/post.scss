@@ -1,0 +1,97 @@
+body {
+    width: 80%;
+    margin: 0 auto;
+    background-color: white;
+}
+
+header {
+    margin-top: 50px;
+    display: flex;
+    margin-bottom: 10px;
+    h2 {
+        font-size: 40px;
+    }
+}
+
+.main {
+    border: 1px solid ;
+    padding: 30px;
+}
+
+.error {
+    margin-bottom: 20px;
+}
+
+.announce {
+    font-size: 20px;
+    color: black;
+}
+
+.message {
+    color: red;
+}
+
+form {
+    input, textarea {
+        display: block;
+    }
+}
+
+.title {
+    width: 80%;
+    height: 25px;
+    margin-bottom: 40px;
+}
+
+.form-body {
+    width: 80%;
+    height: 300px;
+    margin-bottom: 40px;
+}
+
+#image-view {
+    display: block;
+    width:500px;
+    height:250px;
+}
+
+button {
+    width: 20%;
+    margin: 40px 0;
+    background-color: turquoise;
+    cursor: pointer;
+}
+
+//edit
+.check-image {
+    width:600px;
+    height:280px;
+    margin-bottom: 40px;
+    img {
+        width:500px;
+        height:250px;
+    }
+} 
+
+.no-image {
+    background-color: slategray;
+    text-align: center;
+    line-height: 250px;
+    width:500px;
+    height:250px;
+}
+
+.invisible {
+    display: none;
+}
+.visible {
+    display: block;
+}
+
+.btns {
+    margin-bottom: 10px;
+}
+
+.red {
+    background-color: red;
+}
