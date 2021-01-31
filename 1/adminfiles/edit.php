@@ -97,7 +97,7 @@ if (!empty($_GET['post_id']) && empty($_POST['post_id'])) {
 </head>
 <body>
 <header>
-    <h2>編集画面</h2>
+    <h2>記事編集画面</h2>
 </header>
 <div class="main">
     
