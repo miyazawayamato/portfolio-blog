@@ -23,7 +23,7 @@ $coments = $stmt->fetchAll();
 
 
 $errors = $_SESSION['errors'];
-
+$counter = 0;
 
 ?>
 
@@ -52,39 +52,41 @@ $errors = $_SESSION['errors'];
     <p class="image no-image">NoImage</p>
     <?php endif; ?>
     
+    <p class="text" ><?php echo h($post[0]['body']); ?></p>
     
+    <div class="coment">
+        <div class="coment-list">
+            <h4 class="coment-title">コメント一覧</h4>
+            <?php foreach($coments as $coment): ?>
+            <div class="com-box">
+            <p class="com-name"><?php echo h($coment['name']);?></p>
+            <p class="com-body"><?php echo h($coment['coment']);?></p>
+            </div>
+            <?php $counter++; ?>
+            <?php endforeach; ?>
+            <span>コメント数:<?php echo $counter;?>件</span>
+        </div>
     
-    <p class="text"><?php echo h($post[0]['body']); ?></p>
-    
-    <h4 class="coment">コメント</h4>
-    <?php foreach($coments as $coment): ?>
-    <div class="com-box">
-    <p class="com-name"><?php echo h($coment['name']);?></p>
-    <p class="com-body"><?php echo h($coment['coment']);?></p>
-    </div>
-    <?php endforeach; ?>
-    
-    
-    <div class="coment-form">
-    <div class="error">
-        <?php if ($errors): ?>
-        <p class="announce">記入要件を満たしていないものがあります</p>
-        <?php foreach ($errors as $error): ?>
-        <p class="message"><?php echo $error; ?></p>
-        <?php endforeach; ?>
-        <?php endif; ?>
-    </div>
-    
-    <h4 class="coment">コメント投稿</h4>
-    <form action="coment.php" method="post">
-    <input type="hidden" value="<?php echo $post_id; ?>" name="post_id" >
-    <p>投稿ネーム</p>
-    <input type="text" name="name" class="block ">
-    <p>本文</p>
-    <textarea name="coment" class="block "></textarea>
-    <button name="send">送信</button>
-    </form>
-    
+        <div class="coment-form">
+            <div class="error">
+                <?php if ($errors): ?>
+                <p class="announce">記入要件を満たしていないものがあります</p>
+                <?php foreach ($errors as $error): ?>
+                <p class="message"><?php echo $error; ?></p>
+                <?php endforeach; ?>
+                <?php endif; ?>
+            </div>
+        
+            <h4 class="coment-title">コメント投稿</h4>
+            <form action="coment.php" method="post">
+                <input type="hidden" value="<?php echo $post_id; ?>" name="post_id" >
+                <p>投稿ネーム</p>
+                <input type="text" name="name" class="block ">
+                <p>本文</p>
+                <textarea name="coment" class="block "></textarea>
+                <button name="send">送信</button>
+            </form>
+        </div>
     </div>
     <a href="top.php">一覧へ</a>
 </div>

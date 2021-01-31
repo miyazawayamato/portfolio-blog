@@ -16,16 +16,27 @@
 }
 
 .coment {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.coment-title {
   margin: 10px 0;
 }
 
+.coment-form, .coment-list {
+  margin-top: 50px;
+  width: 50%;
+}
+
 .coment-form {
-  margin-top: 100px;
+  padding-left: 10%;
 }
 
 .block {
   display: block;
-  width: 20%;
+  width: 50%;
   margin-bottom: 10px;
 }
 
@@ -39,22 +50,25 @@ textarea {
   margin-bottom: 30px;
   padding-bottom: 50px;
   border-bottom: 1px solid;
+  white-space: pre-wrap;
 }
 
 .com-box {
   padding: 5px;
   border: 1px solid;
   margin-bottom: 10px;
-  width: 30%;
+  width: 60%;
 }
 
 .com-name {
   text-decoration: underline;
-  margin-bottom: 8px;
+  margin-bottom: 15px;
 }
 
 .com-body {
   letter-spacing: 2px;
+  line-height: 18px;
+  white-space: pre-wrap;
 }
 
 .error {
@@ -66,7 +80,7 @@ textarea {
 }
 
 button {
-  width: 20%;
+  width: 40%;
   margin: 20px 0;
   background-color: turquoise;
   cursor: pointer;

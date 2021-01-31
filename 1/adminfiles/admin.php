@@ -17,8 +17,23 @@ $stmt = $dbh->prepare($sql);
 $stmt->execute();
 $posts = $stmt->fetchAll();
 
+define('MAX','5');//1ページにいくつ表示するか
+$posts_num = count($posts);//記事数確認
+$max_page = ceil($posts_num / MAX);//割って最大ページ数取得
+
+// $_GET['page_id'] はURLに渡された現在のページ数
+if(!isset($_GET['page_id'])){
+    $now = 1; // 設定されてない場合は1ページ目にする
+}else{
+    $now = $_GET['page_id'];
+}
+
+$start_no = ($now - 1) * MAX; // すべての記時の何番目から取得すればよいか
+// 配列の何番目($start_no)から何番目(MAX)まで切り取る
+$disp_data = array_slice($posts, $start_no, MAX, true);
 
 //変更機能
+
 
 ?>
 
@@ -46,13 +61,15 @@ $posts = $stmt->fetchAll();
                 <li><a href="./post.php">投稿ページ</a></li>
                 <li><a href="./logout.php">ログアウト</a></li>
                 <li><a href="../user/top.php">トップ画面</a></li>
+                <li><a href="#">プロフィール</a></li>
             </ul>
         </nav>
     </header>
 
     <div class="main">
+        <span>全記事数:<?php echo $posts_num ;?>件</span>
         <div class="list">
-        <?php foreach ($posts as $post): ?>
+        <?php foreach ($disp_data as $post): ?>
             <div class="box">
                 <h3><?php echo h($post['title']); ?></h3>
                 <div class="box-menu">
@@ -77,6 +94,13 @@ $posts = $stmt->fetchAll();
         </div>
     </div>
 </div>
+<?php for($i = 1; $i <= $max_page; $i++){ // 最大ページ数分リンクを作成
+    if ($i == $now) { // 現在表示中のページ数の場合はリンクを貼らない
+        echo '<spam>'.$now.'</span>　'; 
+    } else {
+        echo '<a href=./admin.php?page_id='.$i.'>'.$i.'</a>'.'　';
+    }
+}; ?>
 
 <script src="../javascript/admin.js"></script>
 </body>

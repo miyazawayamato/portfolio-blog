@@ -1,26 +1,16 @@
-// header {
-//     background-color: black;
-//     padding-top: 20px;
-// }
-// .main-title {
-//     margin: 0px 200px;
-//     padding: 20px 0;
-//     text-align: center;
-//     color: white;
-//     font-size: 35px;
-//     border-top: 2px solid gold;
-//     border-bottom: 2px solid gold;
-// }
-
-// .sub-title {
-//     margin-top: 20px;
-//     padding-bottom: 20px;
-//     text-align: center;
-//     color: whitesmoke;
-// }
-
 .main {
     padding-top: 40px;
+    display: flex;
+}
+
+.left {
+    width: 70%;
+}
+
+.right {
+    width: 30%;
+    border: 1px solid;
+    margin-left: 10px;
 }
 
 .list-title {
@@ -33,7 +23,6 @@
     margin-bottom: 20px;
     padding-bottom: 20px;
     border-bottom: 1px solid;
-    width: 70%;
 }
 
 .image {
@@ -49,8 +38,27 @@
 }
 
 .list-info {
-    width: 50%;
+    width: 70%;
     a, span {
         display: block;
     }
+}
+
+.prof {
+    border: 1px solid;
+    padding: 10px;
+    h4 {
+        margin-bottom: 10px;
+    }
+}
+
+.prof-text {
+    margin-top: 10px;
+    letter-spacing: 1px;
+    line-height: 20px;
+}
+
+.page {
+    width: 80%;
+    margin: 0 auto;
 }
