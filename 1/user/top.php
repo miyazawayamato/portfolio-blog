@@ -31,6 +31,7 @@ if(!isset($_GET['page_id'])){
 $start_no = ($now - 1) * MAX; // すべての記時の何番目から取得すればよいか
 // 配列の何番目($start_no)から何番目(MAX)まで切り取る
 $disp_data = array_slice($posts, $start_no, MAX, true);
+
 ?>
 
 <!DOCTYPE html>
