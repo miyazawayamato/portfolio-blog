@@ -7,7 +7,9 @@ $_SESSION['errors'] = array();
 
 require_once '../adminfiles/connect.php';
 require_once '../adminfiles/functions.php';
+require_once '../adminfiles/prof.php';
 
+$prof = getProf();
 
 $dbh = connect();
 $sql = "SELECT * FROM posts";
@@ -45,8 +47,8 @@ $disp_data = array_slice($posts, $start_no, MAX, true);
 </head>
 <body>
 <header>
-    <h1 class="main-title"><a href="top.php" class="title-font">サンプルブログ</a></h1>
-    <p class="sub-title">ポートフォリオ用に制作したものです</p>
+    <h1 class="main-title"><a href="top.php" class="title-font"><?php echo h($prof['blog_title']) ;?></a></h1>
+    <!-- <p class="sub-title">ポートフォリオ用に制作したものです</p> -->
 </header>
     <div class="main">
         <div class="left">
@@ -70,8 +72,8 @@ $disp_data = array_slice($posts, $start_no, MAX, true);
             <div class="prof">
                 <h4>プロフィール</h4>
                 <img src="" alt="" style="display: block;">
-                <span>name:</span><span>ここに名前</span>
-                <p class="prof-text">就活に失敗した大学4年生です。80社落ちたので企業への就職を止めて、フリーランスそして起業をして生活する事を目指そうと思いました。コネなしカネなしアイデアなし、でも時間だけはあります。ほんとに何もわからない状態からのスタートです。甘い考えだと分かってはいますが、この道で生きていくと決めたので何事も吸収し頑張ります。</p>
+                <span>name:</span><span><?php echo h($prof['name']) ;?></span>
+                <p class="prof-text"><?php echo h($prof['prof_text']) ;?></p>
             </div>
             <div class="time-navi">
                 <h4>月別</h4>

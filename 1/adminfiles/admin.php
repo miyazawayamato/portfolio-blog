@@ -59,7 +59,7 @@ $disp_data = array_slice($posts, $start_no, MAX, true);
         <nav>
             <ul class="navi">
                 <li><a href="./post.php">投稿ページ</a></li>
-                <li><a href=".profedit.php">プロフィール</a></li>
+                <li><a href="./profedit.php">プロフィール</a></li>
                 <li><a href="./logout.php">ログアウト</a></li>
                 <li><a href="../user/top.php">トップ画面</a></li>
             </ul>

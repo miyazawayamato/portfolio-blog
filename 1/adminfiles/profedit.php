@@ -6,6 +6,7 @@ require_once '../adminfiles/functions.php';
 
 $prof = getProf();
 
+
 if (isset($_POST['send'])) {
     
     $blog_title = $_POST['blog_title'];
@@ -60,13 +61,14 @@ if (isset($_POST['send'])) {
     </div>
     
     <form action="" method="post">
-        <input type="text" name="blog_title" value="<?php h($prof['blog_title']) ;?>">
-        <input type="text" name="name" value="<?php h($prof['name']) ;?>">
-        <textarea name="prof_text"><?php h($prof['prof_text']) ;?></textarea>
+        <input type="text" name="blog_title" value="<?php echo ($prof['blog_title']) ;?>">
+        <input type="text" name="name" value="<?php echo h($prof['name']) ;?>">
+        <textarea name="prof_text"><?php echo h($prof['prof_text']) ;?></textarea>
         <img id="image-view">
         <input type="file" accept=".png, .jpg, .jpeg, gif" name="prof_image" id="image-select">
         <button name="send">更新する</button>
     </form>
+    <a href="./admin.php">戻る</a>
 </div>
     
     
