@@ -91,8 +91,8 @@ if (!empty($_GET['post_id']) && empty($_POST['post_id'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/post/post.css">
+    <link rel="stylesheet" href="../assets/css/reset.css">
+    <link rel="stylesheet" href="../assets/css/post/post.css">
     <title>編集画面</title>
 </head>
 <body>

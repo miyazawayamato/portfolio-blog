@@ -32,8 +32,8 @@ $counter = 0;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="../css/article/article.css">
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/article/article.css">
     <title>Document</title>
 </head>
 <body>
@@ -47,7 +47,7 @@ $counter = 0;
     <p><?php echo h(date('Y年m月d日',strtotime($post[0]['time']))); ?></p>
     
     <?php if (!is_null($post[0]['filepass'])): ?>
-    <img src="<?php echo '../file/'.h($post[0]['filepass']); ?>" class="image">
+    <img src="<?php echo '../assets/file/'.h($post[0]['filepass']); ?>" class="image">
     <?php else: ?>
     <p class="image no-image">NoImage</p>
     <?php endif; ?>

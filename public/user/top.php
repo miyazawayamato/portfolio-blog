@@ -41,8 +41,8 @@ $disp_data = array_slice($posts, $start_no, MAX, true);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/common.css">
-    <link rel="stylesheet" href="../css/top/top.css">
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/top/top.css">
     <title>サンプルブログ</title>
 </head>
 <body>
@@ -60,7 +60,7 @@ $disp_data = array_slice($posts, $start_no, MAX, true);
                 </div>
                 <div class="list-img">
                     <?php if (!is_null($post['filepass'])): ?>
-                    <img src="<?php echo '../file/'.h($post['filepass']); ?>" class="image">
+                    <img src="<?php echo '../assets/file/'.h($post['filepass']); ?>" class="image">
                     <?php else: ?>
                     <p class="image no-image">NoImage</p>
                     <?php endif; ?>

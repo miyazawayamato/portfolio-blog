@@ -44,8 +44,8 @@ $disp_data = array_slice($posts, $start_no, MAX, true);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/reset.css">
-    <link rel="stylesheet" href="../css/admin/admin.css">
+    <link rel="stylesheet" href="../assets/css/reset.css">
+    <link rel="stylesheet" href="../assets/css/admin/admin.css">
     <title>管理ページ</title>
 </head>
 <body>
