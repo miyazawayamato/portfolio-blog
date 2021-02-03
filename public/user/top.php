@@ -5,9 +5,9 @@ session_start();
 
 $_SESSION['errors'] = array();
 
-require_once '../adminfiles/connect.php';
-require_once '../adminfiles/functions.php';
-require_once '../adminfiles/prof.php';
+require_once '../admin/connect.php';
+require_once '../admin/escape.php';
+require_once '../admin/prof.php';
 
 $prof = getProf();
 
@@ -19,14 +19,14 @@ $posts = $stmt->fetchAll();
 
 //ページネーション
 
-define('MAX','5');//1ページにいくつ表示するか
-$posts_num = count($posts);//記事数確認
-$max_page = ceil($posts_num / MAX);//割って最大ページ数取得
+define('MAX', '5'); //1ページにいくつ表示するか
+$posts_num = count($posts); //記事数確認
+$max_page = ceil($posts_num / MAX); //割って最大ページ数取得
 
 // $_GET['page_id'] はURLに渡された現在のページ数
-if(!isset($_GET['page_id'])){
+if (!isset($_GET['page_id'])) {
     $now = 1; // 設定されてない場合は1ページ目にする
-}else{
+} else {
     $now = $_GET['page_id'];
 }
 
@@ -38,6 +38,7 @@ $disp_data = array_slice($posts, $start_no, MAX, true);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,35 +46,38 @@ $disp_data = array_slice($posts, $start_no, MAX, true);
     <link rel="stylesheet" href="../assets/css/top/top.css">
     <title>サンプルブログ</title>
 </head>
+
 <body>
-<header>
-    <h1 class="main-title"><a href="top.php" class="title-font"><?php echo h($prof['blog_title']) ;?></a></h1>
-    <!-- <p class="sub-title">ポートフォリオ用に制作したものです</p> -->
-</header>
+    <header>
+        <h1 class="main-title"><a href="top.php" class="title-font"><?php echo h($prof['blog_title']); ?></a></h1>
+        <!-- <p class="sub-title">ポートフォリオ用に制作したものです</p> -->
+    </header>
     <div class="main">
         <div class="left">
-            <?php foreach ($disp_data as $post): ?>
-            <div class="list-main">
-                <div class="list-info">
-                    <a href="article.php?post_id=<?php echo h($post['id']); ?>"><h3 class="list-title"><?php echo h($post['title']); ?></h3></a>
-                    <span><?php echo h(date('Y年m月d日',strtotime($post['time']))); ?></span>
+            <?php foreach ($disp_data as $post) : ?>
+                <div class="list-main">
+                    <div class="list-info">
+                        <a href="article.php?post_id=<?php echo h($post['id']); ?>">
+                            <h3 class="list-title"><?php echo h($post['title']); ?></h3>
+                        </a>
+                        <span><?php echo h(date('Y年m月d日', strtotime($post['time']))); ?></span>
+                    </div>
+                    <div class="list-img">
+                        <?php if (!is_null($post['filepass'])) : ?>
+                            <img src="<?php echo '../assets/file/' . h($post['filepass']); ?>" class="image">
+                        <?php else : ?>
+                            <p class="image no-image">NoImage</p>
+                        <?php endif; ?>
+                    </div>
                 </div>
-                <div class="list-img">
-                    <?php if (!is_null($post['filepass'])): ?>
-                    <img src="<?php echo '../assets/file/'.h($post['filepass']); ?>" class="image">
-                    <?php else: ?>
-                    <p class="image no-image">NoImage</p>
-                    <?php endif; ?>
-                </div>
-            </div>
             <?php endforeach; ?>
         </div>
         <div class="right">
             <div class="prof">
                 <h4>プロフィール</h4>
                 <img src="" alt="" style="display: block;">
-                <span>name:</span><span><?php echo h($prof['name']) ;?></span>
-                <p class="prof-text"><?php echo h($prof['prof_text']) ;?></p>
+                <span>name:</span><span><?php echo h($prof['name']); ?></span>
+                <p class="prof-text"><?php echo h($prof['prof_text']); ?></p>
             </div>
             <div class="time-navi">
                 <h4>月別</h4>
@@ -85,13 +89,15 @@ $disp_data = array_slice($posts, $start_no, MAX, true);
         </div>
     </div>
     <div class="page">
-        <?php for($i = 1; $i <= $max_page; $i++){ // 最大ページ数分リンクを作成
+        <?php for ($i = 1; $i <= $max_page; $i++) { // 最大ページ数分リンクを作成
             if ($i == $now) { // 現在表示中のページ数の場合はリンクを貼らない
-                echo '<spam>'.$now.'</span>　'; 
+                echo '<spam>' . $now . '</span>　';
             } else {
-                echo '<a href=./top.php?page_id='.$i.'>'.$i.'</a>'.'　';
-            }}; 
+                echo '<a href=./top.php?page_id=' . $i . '>' . $i . '</a>' . '　';
+            }
+        };
         ?>
-     </div>
+    </div>
 </body>
+
 </html>

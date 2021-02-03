@@ -9,7 +9,6 @@ if (empty($_SESSION['title'])) {
     //csrfトークン
     $_SESSION['token'] = base64_encode(openssl_random_pseudo_bytes(48));
     $token = htmlspecialchars($_SESSION['token'], ENT_QUOTES);
-
 }
 
 

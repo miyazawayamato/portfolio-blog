@@ -2,7 +2,7 @@
 
 
 require_once 'connect.php';
-require_once 'functions.php';
+require_once 'escape.php';
 
 // post_tags＿holds
 $dbh = connect();
@@ -30,28 +30,31 @@ $holds = explode(',', $holds);
 //     foreach ( glob('../tmp/*') as $file ) {
 //         unlink($file);
 //     }
-    
+
 //     echo '削除です';
 // }
 
 ?>
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
-<?php 
-echo '<br>';
-var_dump($posts);
-echo '<br>';
-?>
+    <?php
+    echo '<br>';
+    var_dump($posts);
+    echo '<br>';
+    ?>
 
 
-<form action="" method="post">
-<button name="btn" value="test">削除</button>
-</form>
+    <form action="" method="post">
+        <button name="btn" value="test">削除</button>
+    </form>
 </body>
+
 </html>
