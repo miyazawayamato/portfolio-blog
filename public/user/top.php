@@ -5,9 +5,9 @@ session_start();
 
 $_SESSION['errors'] = array();
 
-require_once '../admin/connect.php';
-require_once '../admin/escape.php';
-require_once '../admin/prof.php';
+require_once '../functions/connect.php';
+require_once '../functions/escape.php';
+require_once '../functions/prof.php';
 
 $prof = getProf();
 

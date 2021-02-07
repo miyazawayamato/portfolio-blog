@@ -1,8 +1,8 @@
 <?php
 
-require_once 'escape.php';
-require_once 'connect.php';
-require_once 'validation.php';
+require_once '../functions/connect.php';
+require_once '../functions/escape.php';
+require_once '../functions/validation.php';
 
 
 session_start();

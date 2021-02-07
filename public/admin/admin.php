@@ -7,8 +7,8 @@ session_start();
 //     header('Location:./admin_login.php');
 // }
 
-require_once 'connect.php';
-require_once 'escape.php';
+require_once '../functions/connect.php';
+require_once '../functions/escape.php';
 
 
 $dbh = connect();

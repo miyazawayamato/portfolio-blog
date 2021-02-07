@@ -1,7 +1,8 @@
 <?php
 
-require_once 'prof.php';
-require_once '../admin/escape.php';
+require_once '../functionsprof.php';
+require_once '../functions/connect.php';
+require_once '../functions/escape.php';
 
 
 $prof = getProf();

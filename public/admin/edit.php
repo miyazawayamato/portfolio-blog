@@ -1,8 +1,8 @@
 <?php
-require_once 'connect.php';
-require_once 'escape.php';
-require_once 'validation.php';
-require_once 'editImage.php';
+require_once '../functions/connect.php';
+require_once '../functions/escape.php';
+require_once '../functions/validation.php';
+require_once '../functions/editImage.php';
 
 //getで表示
 //postで編集して遷移

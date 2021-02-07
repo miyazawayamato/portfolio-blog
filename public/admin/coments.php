@@ -1,8 +1,8 @@
 <?php
 session_start();
 
-require_once '../admin/connect.php';
-require_once '../admin/escape.php';
+require_once '../functions/connect.php';
+require_once '../functions/escape.php';
 
 $dbh = connect();
 
