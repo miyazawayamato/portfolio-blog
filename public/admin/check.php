@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-
 if (empty($_SESSION['title'])) {
     header('Location:http://localhost/product/1/post.php');
     exit();
@@ -11,12 +10,7 @@ if (empty($_SESSION['title'])) {
     $token = htmlspecialchars($_SESSION['token'], ENT_QUOTES);
 }
 
-
-//タグの名前
-
 ?>
-
-
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -35,11 +29,11 @@ if (empty($_SESSION['title'])) {
 <div class="main">
 
     <div class="image-check">
-    <?php if (!empty($_SESSION['image'])): ?>
-    <img src="../tmp/<?php echo $_SESSION['image']; ?>" >
-    <?php else: ?>
-    <p class="no-image">NoImage</p>
-    <?php endif; ?>
+        <?php if (!empty($_SESSION['image'])): ?>
+        <img src="../assets/tmp/<?php echo $_SESSION['image']; ?>" >
+        <?php else: ?>
+        <p class="no-image">NoImage</p>
+        <?php endif; ?>
     </div>
     
     <p class="title"><?php echo $_SESSION['title']; ?></p>
@@ -51,7 +45,7 @@ if (empty($_SESSION['title'])) {
     <?php endforeach; ?>
      -->
     
-    <form action="posting.php" method="post">
+    <form action="../functions/posting.php" method="post">
         <input type="hidden" name="token" value="<?php echo $token ?>">
         <button>投稿する</button>
         <p><a href="post.php?action=back">入力画面へ戻る</a></p>

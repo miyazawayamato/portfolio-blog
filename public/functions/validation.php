@@ -16,13 +16,6 @@ function postValidate($title, $body, $file) {
         $errors[] = '1000字以内で入力してください';
     }
     
-    //タグ
-    // if (!empty($_POST['tags'])){
-    //     $tags = h($_POST['tags']);
-    // } else {
-    //     $tags[] = '1';
-    // }
-    
     if (is_uploaded_file($file['tmp_name'])) {
         //basename
         $filename = basename($file['name']);

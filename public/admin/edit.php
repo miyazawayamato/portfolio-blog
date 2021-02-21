@@ -3,29 +3,22 @@ require_once '../functions/connect.php';
 require_once '../functions/escape.php';
 require_once '../functions/validation.php';
 require_once '../functions/editImage.php';
+require_once '../functions/fetch.php';
 
 //getで表示
 //postで編集して遷移
 
-$file_dir = '../file/';
+$file_dir = '../assets/file/';
+$errors = array();
 
 if (!empty($_GET['post_id']) && empty($_POST['post_id'])) {
+    
     $post_id = $_GET['post_id'];
-
-    $dbh = connect();
-
-
-    $sql = "SELECT * FROM posts WHERE id = ?";
-    $stmt = $dbh->prepare($sql);
-    $stmt->bindValue(1, $post_id, PDO::PARAM_STR);
-    $stmt->execute();
-    $post = $stmt->fetch();
-
-    $post_id = h($post_id);
-    $curentFilepass = h($post['filepass']);
-    $title = h($post['title']);
-    $body = h($post['body']);
+    
+    $post = oneFetch($post_id);
+    
 } else if (!empty($_POST['post_id'])) {
+    
     //現在の画像、なければ空文字を取得
     $curentFilepass = h($_POST['curentfilepass']);
     //更新するデータ取得
@@ -125,9 +118,9 @@ if (!empty($_GET['post_id']) && empty($_POST['post_id'])) {
             <div class="check-image">
 
                 <div id="old-image" class="btn-image visible invisible">
-                    <?php if (!empty($curentFilepass)) : ?>
-                        <img src="<?php echo $file_dir . $curentFilepass; ?>">
-                        <input type="hidden" name="curentfilepass" value="<?php echo $curentFilepass; ?>">
+                    <?php if (!empty($post['filepass'])) : ?>
+                        <img src="<?php echo $file_dir . h($post['filepass']); ?>">
+                        <input type="hidden" name="curentfilepass" value="<?php echo h($post['filepass']); ?>">
                     <?php else : ?>
                         <p class="no-image">NoImage</p>
                     <?php endif; ?>
@@ -156,14 +149,14 @@ if (!empty($_GET['post_id']) && empty($_POST['post_id'])) {
             <input type="hidden" value="0" id="case" name="image-change">
 
             <span>タイトル</span>
-            <input type="text" name="title" value="<?php echo $title; ?>" class="title" maxlength="50">
+            <input type="text" name="title" value="<?php echo h($post['title']); ?>" class="title" maxlength="50">
             <span>本文</span>
-            <textarea name="body" class="form-body"><?php echo $body; ?></textarea>
+            <textarea name="body" class="form-body"><?php echo h($post['body']); ?></textarea>
             <button name="send">変更する</button>
         </form>
         <a href="admin.php">管理画面へ</a>
     </div>
-    <script src="../javascript/image.js"></script>
+    <script src="../assets/javascript/image.js"></script>
 </body>
 
 </html>

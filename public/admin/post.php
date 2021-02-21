@@ -20,7 +20,7 @@ if (isset($_POST['send'])) {
 
     $filename = basename($file['name']);
     $file_path = $file['tmp_name'];
-    $tmp_dir = '../tmp/';
+    $tmp_dir = '../assets/tmp/';
     
     if (count($errors) === 0) {
         $_SESSION['title'] = $title;
@@ -38,20 +38,11 @@ if (isset($_POST['send'])) {
     }
 }
 
-if ($_GET['action'] === 'back') {
+if (!empty($_GET['action']) && $_GET['action'] === 'back') {
     $title = $_SESSION['title'];
     $body = $_SESSION['body'];
-    $tags = $_SESSION['tags'];
     $image = $_SESSION['image'];
 }
-
-//
-$dbh = connect();
-$sql = "SELECT * FROM tags";
-$stmt = $dbh->prepare($sql);
-$stmt->execute();
-$tags = $stmt->fetchAll();
-
 
 ?>
 
@@ -83,13 +74,9 @@ $tags = $stmt->fetchAll();
         <!-- 確認画面から戻ったあとの画像とタグの表示 -->
         <form action="" method="post" enctype="multipart/form-data">
             <span>タイトル</span>
-            <input type="text" name="title" value="<?php if (isset($title)) {
-                                                        echo $title;
-                                                    } ?>" class="title" maxlength="50">
+            <input type="text" name="title" value="<?php if (isset($title)) {echo $title;} ?>" class="title" maxlength="50">
             <span>本文</span>
-            <textarea name="body" class="form-body"><?php if (isset($body)) {
-                                                        echo $body;
-                                                    } ?></textarea>
+            <textarea name="body" class="form-body"><?php if (isset($body)) {echo $body;} ?></textarea>
             <span>画像の選択</span>
             <img id="image-view">
             <input type="file" accept=".png, .jpg, .jpeg, gif" name="file-image" id="image-select">
@@ -98,7 +85,7 @@ $tags = $stmt->fetchAll();
         </form>
         <a href="./admin.php">戻る</a>
     </div>
-    <script src="../javascript/image.js"></script>
+    <script src="../assets/javascript/image.js"></script>
 </body>
 
 </html>

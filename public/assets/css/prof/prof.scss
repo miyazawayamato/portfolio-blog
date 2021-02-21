@@ -1,0 +1,36 @@
+body {
+    width: 80%;
+    margin: 0 auto;
+    background-color: white;
+}
+
+header {
+    margin-top: 50px;
+    display: flex;
+    margin-bottom: 10px;
+    h2 {
+        font-size: 40px;
+    }
+}
+
+.main {
+    border: 1px solid ;
+    padding: 30px;
+}
+
+.prof-form {
+    div {
+        margin: 10px 0; 
+    }
+    label {
+        display: inline-block;
+        width: 20%;
+    }
+    textarea {
+        height: 200px;
+    }
+}
+
+.prof-text {
+    vertical-align: top;
+}

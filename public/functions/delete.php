@@ -24,7 +24,7 @@ if (!empty($_GET['post_id'])) {
 } else if (!empty($_GET['com_id'])) {
     $com_id = $_GET['com_id'];
     $dbh = connect();
-    $stmt = $dbh->prepare("DELETE FROM coments WHERE id = ?");
+    $stmt = $dbh->prepare("DELETE FROM comments WHERE id = ?");
     $stmt->bindValue(1,$com_id,PDO::PARAM_STR);
     $stmt->execute();
     header('Location:./admin.php');

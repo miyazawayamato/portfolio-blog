@@ -1,12 +1,12 @@
 <?php
 
-require_once '../functionsprof.php';
+require_once '../functions/prof.php';
 require_once '../functions/connect.php';
 require_once '../functions/escape.php';
 
 
 $prof = getProf();
-
+$errors = array();
 
 if (isset($_POST['send'])) {
 
@@ -14,12 +14,13 @@ if (isset($_POST['send'])) {
     $name = $_POST['name'];
     $prof_text = $_POST['prof_text'];
     $prof_image = $_FILES['prof_image'];
-
+    
     $errors = valiProf($blog_title, $name, $prof_text, $prof_image);
+    
     //画像の処理がまだ
     if (count($errors) === 0) {
         $dbh = connect();
-        $sql = "UPDATE prof set b;og_title = ?, name = ?, prof_text = ?, imagepass = ?, WHERE id =  1";
+        $sql = "UPDATE prof set blog_title = ?, name = ?, prof_text = ?, imagepass = ?, WHERE id =  1";
         $stmt = $dbh->prepare($sql);
         $stmt->bindValue(1, $blog_title, PDO::PARAM_STR);
         $stmt->bindValue(2, $name, PDO::PARAM_STR);
@@ -41,7 +42,7 @@ if (isset($_POST['send'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/reset.css">
-    <!-- <link rel="stylesheet" href="../css/post/post.css"> -->
+    <link rel="stylesheet" href="../assets/css/prof/prof.css">
     <title>プロフィール編集</title>
 </head>
 
@@ -61,15 +62,29 @@ if (isset($_POST['send'])) {
                 <?php endforeach; ?>
             <?php endif; ?>
         </div>
-
-        <form action="" method="post">
-            <input type="text" name="blog_title" value="<?php echo ($prof['blog_title']); ?>">
-            <input type="text" name="name" value="<?php echo h($prof['name']); ?>">
-            <textarea name="prof_text"><?php echo h($prof['prof_text']); ?></textarea>
-            <img id="image-view">
-            <input type="file" accept=".png, .jpg, .jpeg, gif" name="prof_image" id="image-select">
-            <button name="send">更新する</button>
-        </form>
+        <div class="prof-form">
+            <form action="" method="post">
+                <div >
+                    <label for="">タイトル</label>
+                    <input type="text" name="blog_title" value="<?php echo ($prof['blog_title']); ?>">
+                </div>
+                <div>
+                    <label for="">名前</label>
+                    <input type="text" name="name" value="<?php echo h($prof['name']); ?>">
+                </div>
+                <div>
+                    <label for="" class="prof-text">自己紹介文</label>
+                    <textarea name="prof_text"><?php echo h($prof['prof_text']); ?></textarea>
+                </div>
+                <div>
+                    <label for="">プロフィール写真</label>
+                    <img id="image-view">
+                    <input type="file" accept=".png, .jpg, .jpeg, gif" name="prof_image" id="image-select">
+                </div>
+                <button name="send">更新する</button>
+            </form>
+        
+        </div>
         <a href="./admin.php">戻る</a>
     </div>
 

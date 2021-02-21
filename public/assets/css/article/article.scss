@@ -15,20 +15,20 @@
     padding-bottom: 20px;
 }
 
-.coment {
+.comment {
     display: flex;
 }
 
-.coment-title {
+.comment-title {
     margin: 10px 0;
 }
 
-.coment-form, .coment-list {
+.comment-form, .comment-list {
     margin-top: 50px;
     width: 50%;
 }
 
-.coment-form {
+.comment-form {
     padding-left: 10%;
 }
 
@@ -56,6 +56,7 @@ textarea {
     border: 1px solid;
     margin-bottom: 10px;
     width: 60%;
+    background-color: whitesmoke;
 }
 
 .com-name {
@@ -79,6 +80,55 @@ textarea {
 button {
     width: 40%;
     margin: 20px 0;
-    background-color: turquoise;
+    background-color: rgb(68, 240, 223);
     cursor: pointer;
+    &:hover {
+        background-color: rgb(134, 250, 238);
+    }
+}
+
+@media screen and  (max-width:1024px) {
+    
+    .image {
+        display: block;
+        width: 450px;
+        height: 300px;
+        margin: 30px auto;
+    }
+    
+    .block, .comment-list {
+        width: 70%;
+    }
+    
+}
+
+@media screen and  (max-width:599px) {
+    
+    .image {
+        display: block;
+        width: 270px;
+        height: 180px;
+        margin: 30px auto;
+    }
+    
+    .comment {
+        display: block;
+    }
+    
+    .comment-form, .comment-list {
+        width: 80%;
+        padding-left: 0;
+        margin: 0 auto;
+    }
+    
+    .com-box {
+        padding: 5px;
+        margin-bottom: 10px;
+        width: 100%;
+    }
+    
+    .block{
+        width: 100%;
+        margin: 0 auto;
+    }
 }

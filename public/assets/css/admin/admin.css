@@ -1,7 +1,7 @@
 body {
   width: 80%;
   margin: 0 auto;
-  background-color: white;
+  background-color: #e5fdde;
 }
 
 header {
@@ -32,6 +32,7 @@ header nav {
 
 .main {
   border: 1px solid;
+  background-color: white;
 }
 
 .message {
@@ -84,5 +85,50 @@ header nav {
 .delete-btn {
   cursor: pointer;
   color: red;
+}
+
+@media screen and (max-width: 1024px) {
+  body {
+    width: 85%;
+  }
+  header {
+    display: block;
+  }
+  header nav {
+    margin-left: 0;
+  }
+  header h2 {
+    margin-bottom: 10px;
+  }
+  .navi li {
+    margin-left: 0;
+    margin-right: 10px;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  body {
+    width: 90%;
+  }
+  .navi {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .navi li {
+    margin-left: 0;
+    width: 40%;
+    margin-bottom: 5px;
+  }
+  .admin-time {
+    display: block;
+  }
+  .image {
+    width: 160px;
+    height: 80px;
+    display: block;
+  }
+  .no-image {
+    line-height: 80px;
+  }
 }
 /*# sourceMappingURL=admin.css.map */

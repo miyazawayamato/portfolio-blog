@@ -1,1 +1,56 @@
 一般的にHTMLソースなどの共通ファイルの読み込みの場合はinclude関数、共通のPHPプログラムの処理が書かれているファイルの読み込みはrequire_once関数が使われています。
+
+select name, time   複数カラムは「,」で分ける
+カラムが重複したものを省く
+intカラムに演算子で取得もできる, select price * 1.08
+SELECT SUM(price), avg(price), count(*), max(price), min(price)
+合計、平均、個数、最大、最小
+ASを使うことでカラム名などに別名を定義することができます。
+「カラム名 AS "名前"」で、カラム名に定義する名前を指定します。
+
+
+where categty = "食費" 
+イコール以外の比較演算子も利用できる
+likeも代わりに利用できる %はワイルドカード
+イコールの前にnotで否定になる
+nullでない、nullはISを利用する
+WHERE price IS NOT NULL;
+
+ANDやORはwhereをつけずに、演算子のみで記述
+limitは数制限
+
+
+グループ化
+GROUP BYを用いる場合、SELECTで使えるのは、GROUP BYに指定しているカラム名と、集計関数のみです。
+集計関数＋カラム名をselectに
+SELECT SUM(price), purchased_at
+FROM purchases
+GROUP BY purchased_at
+HAVING SUM(price) > 2000;// HAVINGはグループ化後も条件(whereみたいなの)
+
+サブクエリ
+( )で囲むことで、サブクエリを使用できます。
+サブクエリの書き方は基本的に通常のクエリと同じですが、
+()内にセミコロン（;）は不要です。
+サブクエリを含むクエリの場合、サブクエリが実行された後、外側にあるクエリが実行されます。
+//平均値を取得後、それよりもゴールが多い条件で取得
+SELECT name,goals
+FROM players
+WHERE goals > (
+  SELECT AVG(goals)
+  FROM players
+  );
+  
+  
+テーブル結合
+結合条件は、「ON テーブル名.カラム名 = テーブル名.カラム名」
+結合後同じカラム名で判別がつかないときは、テーブル名.カラム名で指定
+結合後に実行
+SELECT *
+FROM players   //テーブルa
+JOIN countries //
+ON players.country_id = countries.id;
+
+updataは必ずwhereでカラムの選択して、存在するか確認
+SELECT * FROM students WHERE id=6;
+UPDATE students SET name='Jordan', course='HTML' WHERE id=6;

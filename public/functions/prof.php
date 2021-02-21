@@ -9,7 +9,6 @@ function getProf() {
     $dbh = connect();
     $sql = "SELECT * FROM prof  WHERE id = 1";
     $stmt = $dbh->prepare($sql);
-    // $stmt->bindValue(1,1,PDO::PARAM_STR);
     $stmt->execute();
     $prof = $stmt->fetch();
     

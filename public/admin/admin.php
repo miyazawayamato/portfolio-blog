@@ -7,32 +7,23 @@ session_start();
 //     header('Location:./admin_login.php');
 // }
 
-require_once '../functions/connect.php';
 require_once '../functions/escape.php';
+require_once '../functions/fetch.php';
 
-
-$dbh = connect();
-$sql = "SELECT * FROM posts";
-$stmt = $dbh->prepare($sql);
-$stmt->execute();
-$posts = $stmt->fetchAll();
+$posts = allFetch();
 
 define('MAX', '5'); //1ページにいくつ表示するか
 $posts_num = count($posts); //記事数確認
 $max_page = ceil($posts_num / MAX); //割って最大ページ数取得
-
 // $_GET['page_id'] はURLに渡された現在のページ数
 if (!isset($_GET['page_id'])) {
     $now = 1; // 設定されてない場合は1ページ目にする
 } else {
     $now = $_GET['page_id'];
 }
-
 $start_no = ($now - 1) * MAX; // すべての記時の何番目から取得すればよいか
 // 配列の何番目($start_no)から何番目(MAX)まで切り取る
 $disp_data = array_slice($posts, $start_no, MAX, true);
-
-//変更機能
 
 
 ?>
@@ -53,7 +44,7 @@ $disp_data = array_slice($posts, $start_no, MAX, true);
 <body>
 
     <div class="admin">
-        <?php if (($_GET['action'] === 'success')) : ?>
+        <?php if (!empty($_GET['action']) && $_GET['action'] === 'success') : ?>
             <p class="message">投稿に成功ました</p>
         <?php endif; ?>
         <header>
@@ -75,17 +66,17 @@ $disp_data = array_slice($posts, $start_no, MAX, true);
                     <div class="box">
                         <h3><?php echo h($post['title']); ?></h3>
                         <div class="box-menu">
-                            <span><?php echo h(date('Y年m月d日G時i分s秒', strtotime($post['time']))); ?></span>
+                            <span class="admin-time"><?php echo h(date('Y年m月d日G時i分s秒', strtotime($post['time']))); ?></span>
 
                             <span class="delete-btn">記事削除</span>
                             <a href="delete.php?post_id=<?php echo h($post['id']); ?>" style="display: none;" class="delete-exe">削除</a>
 
                             <a href="edit.php?post_id=<?php echo h($post['id']); ?>">編集</a>
-                            <a href="coments.php?post_id=<?php echo h($post['id']); ?>">コメント</a>
+                            <a href="comments.php?post_id=<?php echo h($post['id']); ?>">コメント</a>
                         </div>
                         <div class="box-main">
                             <?php if (!is_null($post['filepass'])) : ?>
-                                <img src="<?php echo '../file/' . h($post['filepass']); ?>" class="image">
+                                <img src="<?php echo '../assets/file/' . h($post['filepass']); ?>" class="image">
                             <?php else : ?>
                                 <p class="image no-image">NoImage</p>
                             <?php endif; ?>

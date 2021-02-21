@@ -13,11 +13,11 @@ if (isset($_SESSION['token'], $_POST['token']) && ($_POST['token'] === $_SESSION
     $stmt->bindValue(2, $_SESSION['body'], PDO::PARAM_STR);
     if ($_SESSION['image']) {
         $stmt->bindValue(3, $_SESSION['image'], PDO::PARAM_STR);
-        $tmp_path = '../tmp/'.$_SESSION['image'];
-        $file_dir = '../file/'.$_SESSION['image'];
+        $tmp_path = '../assets/tmp/'.$_SESSION['image'];
+        $file_dir = '../assets/file/'.$_SESSION['image'];
         if (rename($tmp_path, $file_dir)) {
             //tmpにあるものを削除
-            foreach ( glob('../tmp/*') as $file ) {
+            foreach ( glob('../assets/tmp/*') as $file ) {
                 unlink($file);
             }
         }
@@ -32,11 +32,9 @@ $save = $_SESSION['member'];
 $_SESSION = array();
 $_SESSION['member'] = $save;
 
-
-
 }
 
 //成否判定した方がよさそう
 
-header('Location:./admin.php?action=success');
+header('Location:../admin/admin.php?action=success');
 exit();

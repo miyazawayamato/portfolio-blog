@@ -1,26 +1,15 @@
 <?php
 session_start();
 
-require_once '../functions/connect.php';
 require_once '../functions/escape.php';
-
-$dbh = connect();
+require_once '../functions/fetch.php';
 
 $post_id = $_GET['post_id'];
 
-$sql = "SELECT * FROM posts WHERE id = ?";
-$stmt = $dbh->prepare($sql);
-$stmt->bindValue(1, $post_id, PDO::PARAM_STR);
-$stmt->execute();
-$post = $stmt->fetchAll();
-
-$sql = "SELECT * FROM coments  WHERE posts_id = ?";
-$stmt = $dbh->prepare($sql);
-$stmt->bindValue(1, $post_id, PDO::PARAM_STR);
-$stmt->execute();
-$coments = $stmt->fetchAll();
+$comments = commentsFetch($post_id);
 
 $counter = 0;
+
 
 ?>
 
@@ -31,7 +20,7 @@ $counter = 0;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/reset.css">
-    <link rel="stylesheet" href="../assets/css/coments/coments.css">
+    <link rel="stylesheet" href="../assets/css/comments/comments.css">
     <title>コメント削除</title>
 </head>
 
@@ -41,12 +30,12 @@ $counter = 0;
     </header>
     <div class="main">
         <p>コメント削除</p>
-        <?php foreach ($coments as $coment) : ?>
+        <?php foreach ($comments as $comment) : ?>
             <div class="com-box">
-                <p class="com-name"><?php echo h($coment['name']); ?></p>
-                <p class="com-body"><?php echo h($coment['coment']); ?></p>
+                <p class="com-name"><?php echo h($comment['name']); ?></p>
+                <p class="com-body"><?php echo h($comment['comment']); ?></p>
                 <span class="delete-btn" style="cursor: pointer;">削除</span>
-                <a href="delete.php?com_id=<?php echo h($coment['id']); ?>" style="display: none;" class="delete-exe">削除する</a>
+                <a href="delete.php?com_id=<?php echo h($comment['id']); ?>" style="display: none;" class="delete-exe">削除する</a>
             </div>
             <?php $counter++; ?>
         <?php endforeach; ?>
