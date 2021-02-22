@@ -20,12 +20,25 @@ if (isset($_POST['send'])) {
     //画像の処理がまだ
     if (count($errors) === 0) {
         $dbh = connect();
-        $sql = "UPDATE prof set blog_title = ?, name = ?, prof_text = ?, imagepass = ?, WHERE id =  1";
+        $sql = "UPDATE prof set blog_title = ?, name = ?, prof_text = ?, imagepass = ? WHERE id =  1";
         $stmt = $dbh->prepare($sql);
         $stmt->bindValue(1, $blog_title, PDO::PARAM_STR);
         $stmt->bindValue(2, $name, PDO::PARAM_STR);
         $stmt->bindValue(3, $prof_text, PDO::PARAM_STR);
-        $stmt->bindValue(3, $prof_image, PDO::PARAM_STR);
+        
+        if (is_uploaded_file($prof_image['tmp_name'])) {
+            
+            $save_filename = date('Ymdhis') . basename($prof_image['name']);
+            move_uploaded_file($prof_image['tmp_name'], '../assets/prof/' . $save_filename);
+            $stmt->bindValue(4, $save_filename, PDO::PARAM_STR);
+            
+            foreach ( glob('../assets/prof/*') as $file ) {
+                unlink($file);
+            }
+            
+        } else {
+            $stmt->bindValue(4, NUll , PDO::PARAM_STR);
+        }
         $stmt->execute();
     }
 }
@@ -63,7 +76,7 @@ if (isset($_POST['send'])) {
             <?php endif; ?>
         </div>
         <div class="prof-form">
-            <form action="" method="post">
+            <form action="" method="post" enctype="multipart/form-data">
                 <div >
                     <label for="">タイトル</label>
                     <input type="text" name="blog_title" value="<?php echo ($prof['blog_title']); ?>">

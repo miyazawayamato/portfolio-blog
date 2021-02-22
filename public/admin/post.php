@@ -1,6 +1,5 @@
 <?php
 
-require_once '../functions/connect.php';
 require_once '../functions/escape.php';
 require_once '../functions/validation.php';
 
