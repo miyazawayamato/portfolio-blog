@@ -17,33 +17,25 @@ if (empty($_SESSION['title'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/reset.css">
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/article/article.css">
     <link rel="stylesheet" href="../assets/css/check/check.css">
     <title>Document</title>
 </head>
 <body>
 
 <header>
-    <h2>確認画面</h2>
+    <h2 class="main-title">確認画面</h2>
 </header>
 <div class="main">
-
-    <div class="image-check">
-        <?php if (!empty($_SESSION['image'])): ?>
-        <img src="../assets/tmp/<?php echo $_SESSION['image']; ?>" >
-        <?php else: ?>
-        <p class="no-image">NoImage</p>
-        <?php endif; ?>
-    </div>
     
-    <p class="title"><?php echo $_SESSION['title']; ?></p>
-    <p class="body-check"><?php echo $_SESSION['body']; ?></p>
-    
-    
-    <!-- <?php foreach ($_SESSION['tags'] as $taga => $tag ): ?>
-    <span><?php echo $tag; ?></span>
-    <?php endforeach; ?>
-     -->
+    <h2 class="title"><?php echo $_SESSION['title']; ?></h2>
+    <?php if (!empty($_SESSION['image'])): ?>
+        <img src="../assets/tmp/<?php echo $_SESSION['image']; ?>" class="image">
+    <?php else : ?>
+        <p class="image no-image">NoImage</p>
+    <?php endif; ?>
+    <p class="text"><?php echo $_SESSION['body']; ?></p>
     
     <form action="../functions/posting.php" method="post">
         <input type="hidden" name="token" value="<?php echo $token ?>">
@@ -52,5 +44,7 @@ if (empty($_SESSION['title'])) {
     </form>
     
 </div>
+<footer style="height: 100px;">
+</footer>
 </body>
 </html>

@@ -65,10 +65,12 @@
   background-color: white;
   padding: 10px;
   margin-bottom: 20px;
+  border: 1px solid;
 }
 
 .prof h4 {
   margin-bottom: 10px;
+  color: #87f1a2;
 }
 
 .prof-text {

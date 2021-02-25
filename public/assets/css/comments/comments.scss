@@ -1,21 +1,6 @@
-body {
-    width: 80%;
-    margin: 0 auto;
-    background-color: white;
-}
-
-header {
-    margin-top: 50px;
-    display: flex;
+.com_num {
+    display: inline-block;
     margin-bottom: 10px;
-    h2 {
-        font-size: 40px;
-    }
-}
-
-.main {
-    border: 1px solid ;
-    padding: 30px;
 }
 
 .com-box {
@@ -23,6 +8,7 @@ header {
     border: 1px solid;
     margin-bottom: 10px;
     width: 30%;
+    background-color: white;
 }
 
 .com-name {

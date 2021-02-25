@@ -6,7 +6,9 @@ require_once '../functions/validation.php';
 
 session_start();
 $errors = array();
-
+$title ;
+$body ;
+$file ;
 $_SESSION['image'] = NUll;
 
 if (isset($_POST['send'])) {
@@ -52,13 +54,14 @@ if (!empty($_GET['action']) && $_GET['action'] === 'back') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/reset.css">
+    <link rel="stylesheet" href="../assets/css/admin/common.css">
     <link rel="stylesheet" href="../assets/css/post/post.css">
     <title>投稿画面</title>
 </head>
 
 <body>
     <header>
-        <h2>投稿画面</h2>
+    <h2><a href="./admin.php">投稿画面</a></h2>
     </header>
     <div class="main">
 
@@ -72,11 +75,11 @@ if (!empty($_GET['action']) && $_GET['action'] === 'back') {
         </div>
         <!-- 確認画面から戻ったあとの画像とタグの表示 -->
         <form action="" method="post" enctype="multipart/form-data">
-            <span>タイトル</span>
+            <span class="item">タイトル</span>
             <input type="text" name="title" value="<?php if (isset($title)) {echo $title;} ?>" class="title" maxlength="50">
-            <span>本文</span>
+            <span class="item">本文</span>
             <textarea name="body" class="form-body"><?php if (isset($body)) {echo $body;} ?></textarea>
-            <span>画像の選択</span>
+            <span class="item">画像の選択</span>
             <img id="image-view">
             <input type="file" accept=".png, .jpg, .jpeg, gif" name="file-image" id="image-select">
 
@@ -84,6 +87,8 @@ if (!empty($_GET['action']) && $_GET['action'] === 'back') {
         </form>
         <a href="./admin.php">戻る</a>
     </div>
+    <footer style="height: 100px;">
+    </footer>
     <script src="../assets/javascript/image.js"></script>
 </body>
 

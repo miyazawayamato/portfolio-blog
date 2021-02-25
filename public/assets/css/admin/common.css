@@ -1,0 +1,80 @@
+body {
+  width: 80%;
+  margin: 0 auto;
+}
+
+header {
+  margin-top: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 10px;
+}
+
+header h2 {
+  font-size: 40px;
+  font-weight: 100;
+}
+
+header h2 a {
+  color: black;
+}
+
+header nav {
+  margin-left: 50px;
+}
+
+.navi {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  line-height: 30px;
+}
+
+.navi li {
+  margin-left: 10px;
+}
+
+.navi li a {
+  color: #0fddf8;
+}
+
+.main {
+  padding: 20px 10px;
+  background-color: whitesmoke;
+}
+
+@media screen and (max-width: 1024px) {
+  body {
+    width: 85%;
+  }
+  header {
+    display: block;
+  }
+  header nav {
+    margin-left: 0;
+  }
+  header h2 {
+    margin-bottom: 10px;
+  }
+  .navi li {
+    margin-left: 0;
+    margin-right: 10px;
+  }
+}
+
+@media screen and (max-width: 599px) {
+  body {
+    width: 90%;
+  }
+  .navi {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .navi li {
+    margin-left: 0;
+    width: 40%;
+    margin-bottom: 5px;
+  }
+}
+/*# sourceMappingURL=common.css.map */

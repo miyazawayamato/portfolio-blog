@@ -1,11 +1,11 @@
 <?php
 session_start();
 
-
 //ログイン判定
 // if (empty($_SESSION['member'])) {
 //     header('Location:./admin_login.php');
 // }
+
 
 require_once '../functions/escape.php';
 require_once '../functions/fetch.php';
@@ -37,6 +37,7 @@ $disp_data = array_slice($posts, $start_no, MAX, true);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/reset.css">
+    <link rel="stylesheet" href="../assets/css/admin/common.css">
     <link rel="stylesheet" href="../assets/css/admin/admin.css">
     <title>管理ページ</title>
 </head>
@@ -48,12 +49,13 @@ $disp_data = array_slice($posts, $start_no, MAX, true);
             <p class="message">投稿に成功ました</p>
         <?php endif; ?>
         <header>
-            <h2>管理ページ</h2>
+            <h2><a href="./admin.php">管理ページ</a></h2>
             <nav>
                 <ul class="navi">
                     <li><a href="./post.php">投稿ページ</a></li>
                     <li><a href="./profedit.php">プロフィール</a></li>
-                    <li><a href="./logout.php">ログアウト</a></li>
+                    <!-- <li><a href="">ログアウト</a></li> -->
+                    <li><a href="./category.php">カテゴリー編集</a></li>
                     <li><a href="../user/top.php">トップ画面</a></li>
                 </ul>
             </nav>

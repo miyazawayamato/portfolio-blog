@@ -31,8 +31,8 @@ $counter = 0;
     <header>
         <h1 class="main-title"><a href="top.php" class="title-font">サンプルブログ</a></h1>
     </header>
+    
     <div class="main">
-
         <h2 class="title"><?php echo h($post['title']); ?></h2>
         <p><?php echo h(date('Y年m月d日', strtotime($post['time']))); ?></p>
 
@@ -80,6 +80,9 @@ $counter = 0;
         </div>
         <a href="top.php">一覧へ</a>
     </div>
+    <footer >
+        <span class="copy">©2021/yamato-miyazawa</span>
+    </footer>
 </body>
 
 </html>
