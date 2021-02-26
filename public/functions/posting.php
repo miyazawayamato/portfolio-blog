@@ -7,12 +7,13 @@ require_once 'connect.php';
 if (isset($_SESSION['token'], $_POST['token']) && ($_POST['token'] === $_SESSION['token'])) {
     unset($_SESSION['token']);
     $dbh = connect();
-    $sql = 'INSERT INTO posts (title, body, filepass) VALUE (?, ?, ?)';
+    $sql = 'INSERT INTO posts (title, body, category_id ,filepass) VALUE (?, ?, ?, ?)';
     $stmt = $dbh->prepare($sql);
     $stmt->bindValue(1, $_SESSION['title'], PDO::PARAM_STR);
     $stmt->bindValue(2, $_SESSION['body'], PDO::PARAM_STR);
+    $stmt->bindValue(3, $_SESSION['category'], PDO::PARAM_STR);
     if ($_SESSION['image']) {
-        $stmt->bindValue(3, $_SESSION['image'], PDO::PARAM_STR);
+        $stmt->bindValue(4, $_SESSION['image'], PDO::PARAM_STR);
         $tmp_path = '../assets/tmp/'.$_SESSION['image'];
         $file_dir = '../assets/file/'.$_SESSION['image'];
         if (rename($tmp_path, $file_dir)) {
@@ -22,7 +23,7 @@ if (isset($_SESSION['token'], $_POST['token']) && ($_POST['token'] === $_SESSION
             }
         }
     } else {
-        $stmt->bindValue(3, NUll , PDO::PARAM_STR);
+        $stmt->bindValue(4, NUll , PDO::PARAM_STR);
     }
     $stmt->execute();
 $dbh = null;

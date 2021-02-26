@@ -57,8 +57,23 @@
 }
 
 .list-time {
-  text-align: right;
+  color: black;
   opacity: 0.5;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.cate {
+  margin-top: 5px;
+  display: inline-block !important;
+  color: blue;
+  opacity: 0.5;
+}
+
+.cate:hover {
+  opacity: 1;
 }
 
 .prof {

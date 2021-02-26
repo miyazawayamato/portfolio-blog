@@ -10,6 +10,7 @@ session_start();
 require_once '../functions/escape.php';
 require_once '../functions/fetch.php';
 
+
 $posts = allFetch();
 
 define('MAX', '5'); //1ページにいくつ表示するか
@@ -55,7 +56,7 @@ $disp_data = array_slice($posts, $start_no, MAX, true);
                     <li><a href="./post.php">投稿ページ</a></li>
                     <li><a href="./profedit.php">プロフィール</a></li>
                     <!-- <li><a href="">ログアウト</a></li> -->
-                    <li><a href="./category.php">カテゴリー編集</a></li>
+                    <li><a href="./categories.php">カテゴリー編集</a></li>
                     <li><a href="../user/top.php">トップ画面</a></li>
                 </ul>
             </nav>
@@ -69,7 +70,7 @@ $disp_data = array_slice($posts, $start_no, MAX, true);
                         <h3><?php echo h($post['title']); ?></h3>
                         <div class="box-menu">
                             <span class="admin-time"><?php echo h(date('Y年m月d日G時i分s秒', strtotime($post['time']))); ?></span>
-
+                            <span><?php echo h($post['category']); ?></span>
                             <span class="delete-btn">記事削除</span>
                             <a href="delete.php?post_id=<?php echo h($post['id']); ?>" style="display: none;" class="delete-exe">削除</a>
 

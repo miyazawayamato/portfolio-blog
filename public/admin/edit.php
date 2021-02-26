@@ -2,7 +2,7 @@
 require_once '../functions/connect.php';
 require_once '../functions/escape.php';
 require_once '../functions/validation.php';
-require_once '../functions/editImage.php';
+require_once '../functions/editpost.php';
 require_once '../functions/fetch.php';
 
 //getで表示
@@ -17,6 +17,8 @@ if (!empty($_GET['post_id']) && empty($_POST['post_id'])) {
     
     $post = oneFetch($post_id);
     
+    $curentFilepass = $post['filepass'];
+    
 } else if (!empty($_POST['post_id'])) {
     
     //現在の画像、なければ空文字を取得
@@ -25,6 +27,7 @@ if (!empty($_GET['post_id']) && empty($_POST['post_id'])) {
     $post_id = $_POST['post_id'];
     $title = $_POST['title'];
     $body = $_POST['body'];
+    $category = $_POST['category'];
     //画像変更のパターンを取得
     $image = $_POST['image-change'];
     //画像があればそのデータを取得
@@ -37,7 +40,7 @@ if (!empty($_GET['post_id']) && empty($_POST['post_id'])) {
     if (count($errors) === 0) {
         switch ($image) {
             case 0: //変更なし
-                change($title, $body, $post_id);
+                change($title,$body,$category,$post_id);
                 break;
             case 1: //変更あり//ありからあり、なしからあり、ありからなし、なしからなし
                 if (is_uploaded_file($file['tmp_name'])) {
@@ -45,24 +48,24 @@ if (!empty($_GET['post_id']) && empty($_POST['post_id'])) {
                     $filename = basename($file['name']);
                     $file_path = $file['tmp_name'];
                     $save_filename = date('Ymdhis') . $filename;
-                    updata($title, $body, $post_id, $save_filename, $curentFilepass);
+                    updata($title,$body,$category,$save_filename,$post_id,$curentFilepass);
                     move_uploaded_file($file_path, $file_dir . $save_filename);
                 } else {
                     if (!empty($curentFilepass)) { //ありからなし
                         $save_filename = NULL;
-                        updata($title, $body, $post_id, $save_filename, $curentFilepass);
+                        updata($title,$body,$category,$save_filename,$post_id,$curentFilepass);
                     } else { //なしからなし// case 0 と同じ
-                        change($title, $body, $post_id);
+                        change($title,$body,$category,$post_id);
                     }
                 }
                 break;
             case 2: //削除//なしからなし、ありからなし
                 if (!empty($curentFilepass)) { //ありからなし
                     $save_filename = NULL;
-                    updata($title, $body, $post_id, $save_filename, $curentFilepass);
+                    updata($title,$body,$category,$save_filename,$post_id,$curentFilepass);
                 } else { //なしからなし
                     // case 0 と同じ
-                    change($title, $body, $post_id);
+                    change($title,$body,$category,$post_id);
                 }
                 break;
         }
@@ -73,8 +76,13 @@ if (!empty($_GET['post_id']) && empty($_POST['post_id'])) {
     }
 }
 
+$categories = categoriesFetch();
+
 
 ?>
+
+<!-- カテゴリーごとの表示 -->
+<!-- なび -->
 
 
 
@@ -117,11 +125,11 @@ if (!empty($_GET['post_id']) && empty($_POST['post_id'])) {
         <form action="" method="post" enctype="multipart/form-data">
 
             <div class="check-image">
-
+            
                 <div id="old-image" class="btn-image visible invisible">
-                    <?php if (!empty($post['filepass'])) : ?>
-                        <img src="<?php echo $file_dir . h($post['filepass']); ?>">
-                        <input type="hidden" name="curentfilepass" value="<?php echo h($post['filepass']); ?>">
+                    <?php if (!empty($curentFilepass)) : ?>
+                        <img src="<?php echo $file_dir . h($curentFilepass); ?>">
+                        <input type="hidden" name="curentfilepass" value="<?php echo h($curentFilepass); ?>">
                     <?php else : ?>
                         <p class="no-image">NoImage</p>
                     <?php endif; ?>
@@ -140,24 +148,29 @@ if (!empty($_GET['post_id']) && empty($_POST['post_id'])) {
                 </div>
 
             </div>
-
-
-            <!-- しっかり変更できている、タグはまだです -->
-            <!-- 削除か変更でラジオボタン -->
-            <!-- 変更ならinput表示 -->
-            <!-- なにもしないならそのまま -->
+            
             <input type="hidden" name="post_id" value="<?php echo $post_id; ?>">
             <input type="hidden" value="0" id="case" name="image-change">
-
+            
             <span>タイトル</span>
-            <input type="text" name="title" value="<?php echo h($post['title']); ?>" class="title" maxlength="50">
+            <input type="text" name="title" value="<?php if (isset($title)) {echo $title;} else {echo h($post['title']);}; ?>" class="title" maxlength="50">
             <span>本文</span>
-            <textarea name="body" class="form-body"><?php echo h($post['body']); ?></textarea>
+            <textarea name="body" class="form-body"><?php if (isset($body)) {echo $body;} else {echo h($post['body']);}; ?></textarea>
+            
+            
+            <span style="display: none;" id="select-num"><?php if (isset($category)) {echo $category;} else {echo h($post['category_id']);}; ?></span>
+            <select name="category" id="select">
+                <?php foreach ($categories as $item) : ?>
+                    <option value="<?php echo $item['id'];?>"><?php echo $item['category'];?></option>
+                <?php endforeach; ?>
+            </select>
+            
             <button name="send">変更する</button>
         </form>
         <a href="admin.php">管理画面へ</a>
     </div>
     <script src="../assets/javascript/image.js"></script>
+    <script src="../assets/javascript/category.js"></script>
 </body>
 
 </html>

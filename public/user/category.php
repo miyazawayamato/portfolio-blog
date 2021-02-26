@@ -10,8 +10,10 @@ $_SESSION['errors'] = array();
 
 
 $prof = getProf();
+$category_id = $_GET['category_id'];
+$posts = postCategoryFetch($category_id);
 
-$posts = allFetch();
+
 
 //ページネーション
 define('MAX', '6'); //1ページにいくつ表示するか
@@ -59,10 +61,7 @@ $disp_data = array_slice($posts, $start_no, MAX, true);
                             </div>
                             <div class="list-info">
                                 <h3 class="list-title"><?php echo h($post['title']); ?></h3>
-                                <div class="text-right">
-                                    <span class="list-time"><?php echo h(date('Y年m月d日', strtotime($post['time']))); ?></span>
-                                    <a href="category.php?category_id=<?php echo h($post['category_id']); ?>" class=" cate"><?php echo h($post['category']); ?></a>
-                                </div>
+                                <span class="list-time"><?php echo h(date('Y年m月d日', strtotime($post['time']))); ?></span>
                             </div>
                         </a>
                     </div>

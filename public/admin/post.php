@@ -2,21 +2,24 @@
 
 require_once '../functions/escape.php';
 require_once '../functions/validation.php';
-
+require_once '../functions/fetch.php';
 
 session_start();
+
 $errors = array();
 $title ;
 $body ;
 $file ;
+$category = 1;
 $_SESSION['image'] = NUll;
 
 if (isset($_POST['send'])) {
 
     $title = $_POST['title'];
     $body = $_POST['body'];
+    $category = $_POST['category'];
     $file = $_FILES['file-image'];
-
+    
     $errors = postValidate($title, $body, $file);
 
     $filename = basename($file['name']);
@@ -26,14 +29,14 @@ if (isset($_POST['send'])) {
     if (count($errors) === 0) {
         $_SESSION['title'] = $title;
         $_SESSION['body'] = $body;
-        $_SESSION['tags'] = $tags;
-
+        $_SESSION['category'] = $category;
+        
         if (is_uploaded_file($file['tmp_name'])) {
             $save_filename = date('Ymdhis') . $filename;
             $_SESSION['image'] = $save_filename;
             move_uploaded_file($file_path, $tmp_dir . $save_filename);
         }
-
+        
         header('Location:./check.php');
         exit();
     }
@@ -43,7 +46,10 @@ if (!empty($_GET['action']) && $_GET['action'] === 'back') {
     $title = $_SESSION['title'];
     $body = $_SESSION['body'];
     $image = $_SESSION['image'];
+    $category = $_SESSION['category'];
 }
+
+$categories = categoriesFetch();
 
 ?>
 
@@ -82,7 +88,14 @@ if (!empty($_GET['action']) && $_GET['action'] === 'back') {
             <span class="item">画像の選択</span>
             <img id="image-view">
             <input type="file" accept=".png, .jpg, .jpeg, gif" name="file-image" id="image-select">
-
+            
+            <span id="select-num"><?php if (isset($category)) {echo $category;} ?></span>
+            <select name="category" id="select">
+                <?php foreach ($categories as $item) : ?>
+                    <option value="<?php echo $item['id'];?>"><?php echo $item['category'];?></option>
+                <?php endforeach; ?>
+            </select>
+            
             <button name="send">確認画面へ</button>
         </form>
         <a href="./admin.php">戻る</a>
@@ -90,6 +103,7 @@ if (!empty($_GET['action']) && $_GET['action'] === 'back') {
     <footer style="height: 100px;">
     </footer>
     <script src="../assets/javascript/image.js"></script>
+    <script src="../assets/javascript/category.js"></script>
 </body>
 
 </html>

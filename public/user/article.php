@@ -43,7 +43,9 @@ $counter = 0;
         <?php endif; ?>
 
         <p class="text"><?php echo h($post['body']); ?></p>
-
+        
+        <span><?php echo h($post['category']); ?></span>
+        
         <div class="comment">
             <div class="comment-list">
                 <h4 class="comment-title">コメント一覧</h4>

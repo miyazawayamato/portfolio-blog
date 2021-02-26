@@ -54,9 +54,24 @@
 }
 
 .list-time {
-    text-align: right;
+    color: black;
     opacity: 0.5;
 }
+
+.text-right {
+    text-align: right;
+}
+
+.cate {
+    margin-top: 5px;
+    display: inline-block !important;
+    color: blue;
+    opacity: 0.5;
+    &:hover {
+        opacity: 1;
+    }
+}
+
 .prof {
     background-color: white;
     padding: 10px;

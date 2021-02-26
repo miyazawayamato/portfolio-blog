@@ -1,4 +1,6 @@
 <?php
+
+require_once '../functions/fetch.php';
 session_start();
 
 if (empty($_SESSION['title'])) {
@@ -8,6 +10,10 @@ if (empty($_SESSION['title'])) {
     //csrfトークン
     $_SESSION['token'] = base64_encode(openssl_random_pseudo_bytes(48));
     $token = htmlspecialchars($_SESSION['token'], ENT_QUOTES);
+    
+    
+    $category = categoryFetch($_SESSION['category']);
+    
 }
 
 ?>
@@ -36,6 +42,8 @@ if (empty($_SESSION['title'])) {
         <p class="image no-image">NoImage</p>
     <?php endif; ?>
     <p class="text"><?php echo $_SESSION['body']; ?></p>
+    
+    <span><?php echo $category['category']; ?></span>
     
     <form action="../functions/posting.php" method="post">
         <input type="hidden" name="token" value="<?php echo $token ?>">

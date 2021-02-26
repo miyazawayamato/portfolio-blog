@@ -2,7 +2,7 @@
 
 session_start();
 require_once '../functions/connect.php';
-
+require_once '../functions/fetch.php';
 
 if (isset($_POST['send'])) {
     
@@ -10,8 +10,8 @@ if (isset($_POST['send'])) {
     
     $dbh = connect();
     $sql = 'UPDATE categories SET category = 
-    case id WHEN 1 THEN ? WHEN 2 THEN ? WHEN 3 THEN ? WHEN 4 THEN ?
-    END WHERE id IN (1, 2, 3, 4)';
+    case id WHEN 2 THEN ? WHEN 3 THEN ? WHEN 4 THEN ? WHEN 5 THEN ?
+    END WHERE id IN (2, 3, 4, 5)';
     $stmt = $dbh->prepare($sql);
     $stmt->bindValue(1, $categories[0], PDO::PARAM_STR);
     $stmt->bindValue(2, $categories[1], PDO::PARAM_STR);
@@ -22,6 +22,8 @@ if (isset($_POST['send'])) {
     
 }
 
+$categories = categoriesFetch();
+$count = 1;
 
 
 
@@ -52,12 +54,13 @@ if (isset($_POST['send'])) {
 
         <div class="main">
             <form action="" method="post">
-                <?php for ($i = 1; $i < 5; $i++): ?>
+                <?php foreach($categories as $category): ?>
                 <div>
-                    <label for="">カテゴリー<?php echo $i; ?></label>
-                    <input type="text" name="categories[]">
+                    <label for="">カテゴリー<?php echo $count; ?></label>
+                    <input type="text" name="categories[]" value="<?php echo $category['category']; ?>" require maxlength="7">
                 </div>
-                <?php endfor; ?>
+                <?php $count++; ?>
+                <?php endforeach; ?>
                 <button name="send">送信する</button>
             </form>
         </div>
