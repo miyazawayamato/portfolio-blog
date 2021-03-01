@@ -89,11 +89,6 @@ $disp_data = array_slice($posts, $start_no, MAX, true);
                 <p class="prof-text"><?php echo h($prof['prof_text']); ?></p>
             </div>
             <div class="time-navi">
-                <h4>月別</h4>
-                <p>ここに最新の物を挿入しまうす</p>
-                <p>ここに最新の物を挿入しまうす</p>
-                <p>ここに最新の物を挿入しまうす</p>
-                <p>ここに最新の物を挿入しまうす</p>
             </div>
         </div>
     </div>
