@@ -71,9 +71,8 @@ $disp_data = array_slice($posts, $start_no, MAX, true);
                         <div class="box-menu">
                             <span class="admin-time"><?php echo h(date('Y年m月d日G時i分s秒', strtotime($post['time']))); ?></span>
                             <span><?php echo h($post['category']); ?></span>
-                            <span class="delete-btn">記事削除</span>
-                            <a href="delete.php?post_id=<?php echo h($post['id']); ?>" style="display: none;" class="delete-exe">削除</a>
-
+                            <spaa class="delete-btn">記事削除</spaa>
+                            <a href="../functions/delete.php?post_id=<?php echo h($post['id']); ?>" style="display: none;" class="delete-exe">削除</a>
                             <a href="edit.php?post_id=<?php echo h($post['id']); ?>">編集</a>
                             <a href="comments.php?post_id=<?php echo h($post['id']); ?>">コメント</a>
                         </div>
@@ -97,8 +96,8 @@ $disp_data = array_slice($posts, $start_no, MAX, true);
             echo '<a href=./admin.php?page_id=' . $i . '>' . $i . '</a>' . '　';
         }
     }; ?>
-
-    <script src="../javascript/admin.js"></script>
+    
+    <script src="../functions/javascript/admin.js"></script>
 </body>
 
 </html>

@@ -35,13 +35,13 @@ $com_num = count($comments);
                 <p class="com-name"><?php echo h($comment['name']); ?></p>
                 <p class="com-body"><?php echo h($comment['comment']); ?></p>
                 <span class="delete-btn" style="cursor: pointer;">削除</span>
-                <a href="delete.php?com_id=<?php echo h($comment['id']); ?>" style="display: none;" class="delete-exe">削除する</a>
+                <a href="../functions/delete.php?com_id=<?php echo h($comment['id']); ?>" style="display: none;" class="delete-exe">削除する</a>
             </div>
         <?php endforeach; ?>
         <a href="./admin.php">戻る</a>
 
     </div>
-    <script src="../javascript/admin.js"></script>
+    <script src="../functions/javascript/admin.js"></script>
 </body>
 
 </html>
