@@ -1,15 +1,19 @@
 <?php
+session_start();
+
+//ログイン判定
+// if (empty($_SESSION['member'])) {
+//     header('Location:./admin_login.php');
+// }
 
 require_once '../functions/prof.php';
 require_once '../functions/connect.php';
 require_once '../functions/escape.php';
 
-
-$prof = getProf();
 $errors = array();
 
 if (isset($_POST['send'])) {
-
+    
     $blog_title = $_POST['blog_title'];
     $name = $_POST['name'];
     $prof_text = $_POST['prof_text'];
@@ -19,6 +23,7 @@ if (isset($_POST['send'])) {
     
     //画像の処理がまだ
     if (count($errors) === 0) {
+        
         $dbh = connect();
         $sql = "UPDATE prof set blog_title = ?, name = ?, prof_text = ?, imagepass = ? WHERE id =  1";
         $stmt = $dbh->prepare($sql);
@@ -40,10 +45,10 @@ if (isset($_POST['send'])) {
             $stmt->bindValue(4, NUll , PDO::PARAM_STR);
         }
         $stmt->execute();
-    }
+    };
 }
 
-
+$prof = getProf();
 
 
 ?>
@@ -70,7 +75,7 @@ if (isset($_POST['send'])) {
 
         <div class="error">
             <?php if ($errors) : ?>
-                <p class="announce">記入要件を満たしていないものがあります</p>
+                <p class="announce" style="color: red;">記入要件を満たしていないものがあります</p>
                 <?php foreach ($errors as $error) : ?>
                     <p class="message"><?php echo $error; ?></p>
                 <?php endforeach; ?>

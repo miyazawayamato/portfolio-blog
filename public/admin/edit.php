@@ -1,9 +1,16 @@
 <?php
+session_start();
 require_once '../functions/connect.php';
 require_once '../functions/escape.php';
 require_once '../functions/validation.php';
 require_once '../functions/editpost.php';
 require_once '../functions/fetch.php';
+
+
+//ログイン判定
+// if (empty($_SESSION['member'])) {
+//     header('Location:./admin_login.php');
+// }
 
 //getで表示
 //postで編集して遷移

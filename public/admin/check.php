@@ -1,8 +1,13 @@
 <?php
 
-require_once '../functions/fetch.php';
 session_start();
 
+//ログイン判定
+// if (empty($_SESSION['member'])) {
+//     header('Location:./admin_login.php');
+// }
+require_once '../functions/fetch.php';
+    
 if (empty($_SESSION['title'])) {
     header('Location:http://localhost/product/1/post.php');
     exit();

@@ -1,10 +1,15 @@
 <?php
 
+session_start();
+//ログイン判定
+// if (empty($_SESSION['member'])) {
+//     header('Location:./admin_login.php');
+// }
+
 require_once '../functions/escape.php';
 require_once '../functions/validation.php';
 require_once '../functions/fetch.php';
 
-session_start();
 
 $errors = array();
 $title ;

@@ -1,6 +1,11 @@
 <?php
 
 session_start();
+
+//ログイン判定
+// if (empty($_SESSION['member'])) {
+//     header('Location:./admin_login.php');
+// }
 require_once '../functions/connect.php';
 require_once '../functions/fetch.php';
 
@@ -10,13 +15,14 @@ if (isset($_POST['send'])) {
     
     $dbh = connect();
     $sql = 'UPDATE categories SET category = 
-    case id WHEN 2 THEN ? WHEN 3 THEN ? WHEN 4 THEN ? WHEN 5 THEN ?
-    END WHERE id IN (2, 3, 4, 5)';
+    case id WHEN 1 THEN ? WHEN 2 THEN ? WHEN 3 THEN ? WHEN 4 THEN ? WHEN 5 THEN ?
+    END WHERE id IN (1, 2, 3, 4, 5)';
     $stmt = $dbh->prepare($sql);
-    $stmt->bindValue(1, $categories[0], PDO::PARAM_STR);
-    $stmt->bindValue(2, $categories[1], PDO::PARAM_STR);
-    $stmt->bindValue(3, $categories[2], PDO::PARAM_STR);
-    $stmt->bindValue(4, $categories[3], PDO::PARAM_STR);
+    $stmt->bindValue(1, '未分類', PDO::PARAM_STR);
+    $stmt->bindValue(2, $categories[0], PDO::PARAM_STR);
+    $stmt->bindValue(3, $categories[1], PDO::PARAM_STR);
+    $stmt->bindValue(4, $categories[2], PDO::PARAM_STR);
+    $stmt->bindValue(5, $categories[3], PDO::PARAM_STR);
     $stmt->execute();
     $dbh = null;
     
@@ -57,7 +63,7 @@ $count = 1;
                 <?php foreach($categories as $category): ?>
                 <div>
                     <label for="">カテゴリー<?php echo $count; ?></label>
-                    <input type="text" name="categories[]" value="<?php echo $category['category']; ?>" require maxlength="7">
+                    <input type="text" name="categories[]" value="<?php echo $category['category']; ?>" require maxlength="7" class="cate<?php echo $count; ?>">
                 </div>
                 <?php $count++; ?>
                 <?php endforeach; ?>
@@ -66,6 +72,7 @@ $count = 1;
         </div>
         <a href="admin.php">管理画面へ</a>
     </div>
+<script src="../assets/javascript/category.js"></script>
 </body>
 
 </html>

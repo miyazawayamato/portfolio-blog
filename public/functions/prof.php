@@ -4,6 +4,7 @@
 //新規登録時に入力させる
 
 require_once 'connect.php';
+$errors = array();
 
 function getProf() {
     $dbh = connect();
@@ -16,6 +17,8 @@ function getProf() {
 }
 
 function valiProf($blog_title,$name,$prof_text,$file) {
+    
+    $errors = array();
     
     if (empty($blog_title)){
         $errors[] = 'タイトルを入力してください';
