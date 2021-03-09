@@ -46,7 +46,7 @@ $com_num = count($comments);
         <a href="./admin.php">戻る</a>
 
     </div>
-    <script src="../functions/javascript/admin.js"></script>
+    <script src="../assets/javascript/admin.js" ></script>
 </body>
 
 </html>

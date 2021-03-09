@@ -96,8 +96,7 @@ $disp_data = array_slice($posts, $start_no, MAX, true);
             echo '<a href=./admin.php?page_id=' . $i . '>' . $i . '</a>' . '　';
         }
     }; ?>
-    
-    <script src="../functions/javascript/admin.js"></script>
+<script src="../assets/javascript/admin.js" ></script>
 </body>
 
 </html>

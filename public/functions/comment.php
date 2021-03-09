@@ -31,7 +31,6 @@ if (isset($_POST['send'])) {
     //エラーがない
     if (!count($errors)) {
         
-        echo 'on';
         $dbh = connect();
         $sql = 'INSERT INTO comments (post_id, name, comment) VALUE (?, ?, ?)';
         $stmt = $dbh->prepare($sql);

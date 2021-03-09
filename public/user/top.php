@@ -84,9 +84,17 @@ $disp_data = array_slice($posts, $start_no, MAX, true);
         <div class="right">
             <div class="prof">
                 <h4>プロフィール</h4>
-                <img src="" alt="" style="display: block;">
-                <span>name:</span><span><?php echo h($prof['name']); ?></span>
-                <p class="prof-text"><?php echo h($prof['prof_text']); ?></p>
+                <div>
+                    <?php if (!is_null($prof['imagepass'])) : ?>
+                        <img src="<?php echo '../assets/prof/' . h($prof['imagepass']); ?>" class="prof-image">
+                    <?php else : ?>
+                        <img src="../assets/prof/noimage.jpg" class="prof-image">
+                    <?php endif; ?>
+                    <div>
+                        <span>name:</span><span><?php echo h($prof['name']); ?></span>
+                        <p class="prof-text"><?php echo h($prof['prof_text']); ?></p>
+                    </div>
+                </div>
             </div>
             <div class="time-navi">
             </div>

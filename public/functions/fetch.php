@@ -17,7 +17,7 @@ function oneFetch($post_id) {
 function allFetch() {
     
     $dbh = connect();
-    $sql = "SELECT posts.id AS id, title, body, filepass, time, category, category_id FROM posts JOIN categories ON posts.category_id = categories.id";
+    $sql = "SELECT posts.id AS id, title, body, filepass, time, category, category_id FROM posts JOIN categories ON posts.category_id = categories.id  ORDER BY time";
     $stmt = $dbh->prepare($sql);
     $stmt->execute();
     $posts = $stmt->fetchAll();

@@ -34,12 +34,9 @@ if (isset($_POST['send'])) {
         if (is_uploaded_file($prof_image['tmp_name'])) {
             
             $save_filename = date('Ymdhis') . basename($prof_image['name']);
+            
             move_uploaded_file($prof_image['tmp_name'], '../assets/prof/' . $save_filename);
             $stmt->bindValue(4, $save_filename, PDO::PARAM_STR);
-            
-            foreach ( glob('../assets/prof/*') as $file ) {
-                unlink($file);
-            }
             
         } else {
             $stmt->bindValue(4, NUll , PDO::PARAM_STR);
