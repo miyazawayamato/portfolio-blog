@@ -25,6 +25,7 @@ if (isset($_POST['send'])) {
     // $stmt->bindValue(3, $categories[1], PDO::PARAM_STR);
     // $stmt->bindValue(4, $categories[2], PDO::PARAM_STR);
     // $stmt->bindValue(5, $categories[3], PDO::PARAM_STR);
+    // $stmt->execute();
     
     //応急処理
     $sql = "UPDATE categories SET category = ? WHERE id =  ?";
@@ -47,7 +48,6 @@ if (isset($_POST['send'])) {
     
     
     
-    // $stmt->execute();
     $dbh = null;
     
 }
