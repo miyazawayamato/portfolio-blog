@@ -16,36 +16,16 @@ if (isset($_POST['send'])) {
     $dbh = connect();
     
     //本番環境で失敗
-    // $sql = 'UPDATE categories SET category = 
-    // case id WHEN 1 THEN ? WHEN 2 THEN ? WHEN 3 THEN ? WHEN 4 THEN ? WHEN 5 THEN ?
-    // END WHERE id IN (1, 2, 3, 4, 5)';
-    // $stmt = $dbh->prepare($sql);
-    // $stmt->bindValue(1, '未分類', PDO::PARAM_STR);
-    // $stmt->bindValue(2, $categories[0], PDO::PARAM_STR);
-    // $stmt->bindValue(3, $categories[1], PDO::PARAM_STR);
-    // $stmt->bindValue(4, $categories[2], PDO::PARAM_STR);
-    // $stmt->bindValue(5, $categories[3], PDO::PARAM_STR);
-    // $stmt->execute();
-    
-    //応急処理
-    $sql = "UPDATE categories SET category = ? WHERE id =  ?";
-    $stmt1 = $dbh->prepare($sql);
-    $stmt1->bindValue(1, $categories[0], PDO::PARAM_STR);
-    $stmt1->bindValue(2, 2, PDO::PARAM_STR);
-    $stmt1->execute();
-    $stmt2 = $dbh->prepare($sql);
-    $stmt2->bindValue(1, $categories[1], PDO::PARAM_STR);
-    $stmt2->bindValue(2, 3, PDO::PARAM_STR);
-    $stmt2->execute();
-    $stmt3 = $dbh->prepare($sql);
-    $stmt3->bindValue(1, $categories[2], PDO::PARAM_STR);
-    $stmt3->bindValue(2, 4, PDO::PARAM_STR);
-    $stmt3->execute();
-    $stmt4 = $dbh->prepare($sql);
-    $stmt4->bindValue(1, $categories[3], PDO::PARAM_STR);
-    $stmt4->bindValue(2, 5, PDO::PARAM_STR);
-    $stmt4->execute();
-    
+    $sql = 'UPDATE categories SET category = 
+    case id WHEN 1 THEN ? WHEN 2 THEN ? WHEN 3 THEN ? WHEN 4 THEN ? WHEN 5 THEN ?
+    END WHERE id IN (1, 2, 3, 4, 5)';
+    $stmt = $dbh->prepare($sql);
+    $stmt->bindValue(1, '未分類', PDO::PARAM_STR);
+    $stmt->bindValue(2, $categories[0], PDO::PARAM_STR);
+    $stmt->bindValue(3, $categories[1], PDO::PARAM_STR);
+    $stmt->bindValue(4, $categories[2], PDO::PARAM_STR);
+    $stmt->bindValue(5, $categories[3], PDO::PARAM_STR);
+    $stmt->execute();
     
     
     $dbh = null;
