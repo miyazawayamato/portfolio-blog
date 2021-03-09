@@ -90,7 +90,7 @@ $disp_data = array_slice($posts, $start_no, MAX, true);
                     <?php else : ?>
                         <img src="../assets/prof/noimage.jpg" class="prof-image">
                     <?php endif; ?>
-                    <div>
+                    <div class="prof-texts">
                         <span>name:</span><span><?php echo h($prof['name']); ?></span>
                         <p class="prof-text"><?php echo h($prof['prof_text']); ?></p>
                     </div>
